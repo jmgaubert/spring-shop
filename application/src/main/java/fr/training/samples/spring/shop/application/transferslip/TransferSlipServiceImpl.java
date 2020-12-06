@@ -27,8 +27,6 @@ public class TransferSlipServiceImpl implements TransferSlipService {
         this.transferSlipRepository = transferSlipRepository;
     }
 
-
-
     @Override
     public TransferSlip create(TransferSlip transferSlip) {
         return null;
@@ -49,33 +47,47 @@ public class TransferSlipServiceImpl implements TransferSlipService {
         Holder receiverHolder = holderRepository.findById(transferSlip.getReceiverAccount());
         Balance issuerBalance = balanceRepository.findById(transferSlip.getIssuerAccount());
         Balance receiverBalance = balanceRepository.findById(transferSlip.getReceiverAccount());
-        AccountingMovement issuerAccountingMovement = new AccountingMovement();
-        AccountingMovement receiverAccountingMovement = new AccountingMovement();
 
+        AccountingMovement issuerAccountingMovement = new AccountingMovement();
+        issuerAccountingMovement.setAccount(transferSlip.getIssuerAccount());
         issuerAccountingMovement.setReference("reference mvt debit a définir");
-        issuerAccountingMovement.setBalance((double)transferSlip.getBalance()* -1);
+        issuerAccountingMovement.setAmount((double)transferSlip.getAmount()* -1);
         issuerAccountingMovement.setOperationDate(transferSlip.getExecutionDate());
         issuerAccountingMovement.setValueDate(transferSlip.getExecutionDate().minusDays(1));
         issuerAccountingMovement.setLabel(transferSlip.getLabel()+ " à destination de " + receiverHolder.getName());
         accountingMovementRepository.save(issuerAccountingMovement);
 
+        AccountingMovement receiverAccountingMovement = new AccountingMovement();
+        receiverAccountingMovement.setAccount(transferSlip.getReceiverAccount());
         receiverAccountingMovement.setReference("reference mvt debit a définir");
-        receiverAccountingMovement.setBalance(transferSlip.getBalance());
+        receiverAccountingMovement.setAmount(transferSlip.getAmount());
         receiverAccountingMovement.setOperationDate(transferSlip.getExecutionDate());
         receiverAccountingMovement.setValueDate(transferSlip.getExecutionDate().plusDays(1));
         receiverAccountingMovement.setLabel(transferSlip.getLabel()+ " de la part de " + issuerHolder.getName());
         accountingMovementRepository.save(receiverAccountingMovement);
 
-        BigDecimal issuerBalanceBigDecimal = new BigDecimal(issuerBalance.getBalance()+issuerAccountingMovement.getBalance()).setScale(2, BigDecimal.ROUND_HALF_UP);
-        issuerBalance.setBalance(issuerBalanceBigDecimal.doubleValue());
+        BigDecimal issuerBalanceBigDecimal = new BigDecimal(issuerBalance.getAmount()+issuerAccountingMovement.getAmount()).setScale(2, BigDecimal.ROUND_HALF_UP);
+        issuerBalance.setAmount(issuerBalanceBigDecimal.doubleValue());
         balanceRepository.update(issuerBalance);
 
-        BigDecimal receiverBalanceBigDecimal = new BigDecimal(receiverBalance.getBalance()+receiverAccountingMovement.getBalance()).setScale(2, BigDecimal.ROUND_HALF_UP);
-        receiverBalance.setBalance(receiverBalanceBigDecimal.doubleValue());
+        BigDecimal receiverBalanceBigDecimal = new BigDecimal(receiverBalance.getAmount()+receiverAccountingMovement.getAmount()).setScale(2, BigDecimal.ROUND_HALF_UP);
+        receiverBalance.setAmount(receiverBalanceBigDecimal.doubleValue());
         balanceRepository.update(receiverBalance);
 
-
-
-        return issuerBalance.getAccount()+issuerBalance.getBalance()+receiverBalance.getAccount()+receiverBalance.getBalance();
+//        String[] result = new String[4];
+//        String[0] = (issuerBalance.getAccount()+issuerBalance.getAmount()+receiverBalance.getAccount()+receiverBalance.getAmount());
+          String result = issuerBalance.getAccount().toString()+";"+issuerBalance.getAmount().toString()+":"+receiverBalance.getAccount().toString()+";"+receiverBalance.getAmount().toString();
+        return result;
+//        return issuerBalance.getAccount()+issuerBalance.getAmount()+receiverBalance.getAccount()+receiverBalance.getAmount();
     }
+
+//    @Override
+//    public String toString() {
+//        return "TransferSlipServiceImpl{" +
+//                "holderRepository=" + holderRepository +
+//                ", balanceRepository=" + balanceRepository +
+//                ", accountingMovementRepository=" + accountingMovementRepository +
+//                ", transferSlipRepository=" + transferSlipRepository +
+//                '}';
+//    }
 }

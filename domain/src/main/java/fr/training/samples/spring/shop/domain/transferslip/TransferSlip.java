@@ -12,7 +12,7 @@ public class TransferSlip extends AbstractBaseEntity {
     private String issuerAccount;
     private String receiverAccount;
     private LocalDate executionDate;
-    private double balance;
+    private double amount;
     private String label;
     private boolean beneficiaryInformation;
 
@@ -48,12 +48,12 @@ public class TransferSlip extends AbstractBaseEntity {
         this.executionDate = executionDate;
     }
 
-    public double getBalance() {
-        return balance;
+    public double getAmount() {
+        return amount;
     }
 
-    public void setBalance(double balance) {
-        this.balance = balance;
+    public void setAmount(double amount) {
+        this.amount = amount;
     }
 
     public String getLabel() {

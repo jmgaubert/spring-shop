@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 @Entity
 public class Balance extends AbstractBaseEntity {
     private String account;
-    private Double balance;
+    private Double amount;
 
     public String getAccount() {
         return account;
@@ -17,12 +17,12 @@ public class Balance extends AbstractBaseEntity {
         this.account = account;
     }
 
-    public Double getBalance() {
-        return balance;
+    public Double getAmount() {
+        return amount;
     }
 
-    public void setBalance(Double balance) {
-        this.balance = balance;
+    public void setAmount(Double amount) {
+        this.amount = amount;
     }
 
     @Override

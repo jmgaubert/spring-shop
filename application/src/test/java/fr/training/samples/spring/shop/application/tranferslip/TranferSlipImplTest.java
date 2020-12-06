@@ -6,13 +6,8 @@ import fr.training.samples.spring.shop.application.transferslip.TransferSlipServ
 import fr.training.samples.spring.shop.domain.accountingmovement.AccountingMovementRepository;
 import fr.training.samples.spring.shop.domain.balance.Balance;
 import fr.training.samples.spring.shop.domain.balance.BalanceRepository;
-import fr.training.samples.spring.shop.domain.customer.Customer;
-import fr.training.samples.spring.shop.domain.customer.CustomerRepository;
 import fr.training.samples.spring.shop.domain.holder.Holder;
 import fr.training.samples.spring.shop.domain.holder.HolderRepository;
-import fr.training.samples.spring.shop.domain.item.ItemRepository;
-import fr.training.samples.spring.shop.domain.order.Order;
-import fr.training.samples.spring.shop.domain.order.OrderRepository;
 import fr.training.samples.spring.shop.domain.transferslip.TransferSlip;
 import fr.training.samples.spring.shop.domain.transferslip.TransferSlipRepository;
 import org.junit.Test;
@@ -36,8 +31,6 @@ public class TranferSlipImplTest {
 
     @Autowired
     private TransferSlipService transferSlipService;
-//    @Autowired
-//    private Holder holder;
 
     @MockBean
     private HolderRepository holderRepositoryMock;
@@ -54,7 +47,7 @@ public class TranferSlipImplTest {
         transferSlip.setIssuerAccount("cptref00001");
         transferSlip.setReceiverAccount("cptref00002");
         transferSlip.setExecutionDate(LocalDate.of(2020,11,20));
-        transferSlip.setBalance(1550.53);
+        transferSlip.setAmount(1550.53);
         transferSlip.setLabel("virement pour anniversaire");
         transferSlip.setBeneficiaryInformation(true);
         return transferSlip;
@@ -77,14 +70,14 @@ public class TranferSlipImplTest {
     private Balance getIssuerBalance() {
         final Balance balance = new Balance();
         balance.setAccount("cptref00001");
-        balance.setBalance(3790.14);
+        balance.setAmount(3790.14);
         return balance;
     }
 
     private Balance getReceiverBalance() {
         final Balance balance = new Balance();
         balance.setAccount("cptref00002");
-        balance.setBalance(-145.32);
+        balance.setAmount(-145.32);
         return balance;
     }
 
@@ -103,7 +96,9 @@ public class TranferSlipImplTest {
         // When
         final String result = transferSlipService.runOne("virement 0001");
         // Then
-        assertThat(result).isEqualTo("cptref000012239.61cptref000021405.21");
+        assertThat(result).isEqualTo("cptref00001;2239.61:cptref00002;1405.21");
+        verify(balanceRepositoryMock, times(2)).update(any());
+
 
     }
 

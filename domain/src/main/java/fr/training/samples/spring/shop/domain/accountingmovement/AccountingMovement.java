@@ -8,11 +8,20 @@ import java.time.LocalDate;
 @Entity
 public class AccountingMovement extends AbstractBaseEntity {
 
+    private String account;
     private String reference;
-    private double balance;
+    private double amount;
     private LocalDate operationDate;
     private LocalDate valueDate;
     private String label;
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
+    }
 
     public String getReference() {
         return reference;
@@ -22,12 +31,12 @@ public class AccountingMovement extends AbstractBaseEntity {
         this.reference = reference;
     }
 
-    public double getBalance() {
-        return balance;
+    public double getAmount() {
+        return amount;
     }
 
-    public void setBalance(double balance) {
-        this.balance = balance;
+    public void setAmount(double amount) {
+        this.amount = amount;
     }
 
     public LocalDate getOperationDate() {
