@@ -20,6 +20,11 @@ public class BalanceRepositoryImpl implements BalanceRepository {
     }
 
     @Override
+    public Balance findByBalanceAccount(final String account){
+        return balanceJpaRepository.findByAccount(account);
+    }
+
+    @Override
     public void save(Balance balance){
 
     }
