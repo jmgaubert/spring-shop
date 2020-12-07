@@ -26,3 +26,5 @@ INSERT INTO BALANCE (ID, ACCOUNT, AMOUNT, VERSION) VALUES ('323e4567-e89b-42d3-a
 INSERT INTO HOLDER (ID, ACCOUNT, MAIL_ADRESS, NAME, VERSION) VALUES ('123e4567-e89b-42d3-a458-556642440000', 'cptref00001', 'Antoine.Dupond@gmail.com', 'Antoine Dupond',0);
 INSERT INTO HOLDER (ID, ACCOUNT, MAIL_ADRESS, NAME, VERSION) VALUES ('223e4567-e89b-42d3-a458-556642440000', 'cptref00002', 'Valérie.Labelle@gmail.com','Valérie Labelle',0);
 --create table holder (id varchar(255) not null, version integer not null, account varchar(255), mail_adress varchar(255), name varchar(255), primary key (id))
+--create table accounting_movement (id varchar(255) not null, version integer not null, account varchar(255), amount double not null, label varchar(255), operation_date date, reference varchar(255), value_date date, primary key (id))
+INSERT INTO ACCOUNTING_MOVEMENT (ID, ACCOUNT, AMOUNT, LABEL, OPERATION_DATE, REFERENCE, VALUE_DATE, VERSION) VALUES ('123e4567-e89b-42d3-a459-556642440000', 'cptref00003', 1503.44, 'libellé mouvement générique', '2020-12-07', 'référence mouvement à déterminer', '2020-12-06',0);
