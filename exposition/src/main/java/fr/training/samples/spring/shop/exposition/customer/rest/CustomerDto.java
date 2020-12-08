@@ -2,37 +2,21 @@ package fr.training.samples.spring.shop.exposition.customer.rest;
 
 import java.io.Serializable;
 
-/**
- * @author Badr NASS
- *
- */
-class CustomerDto implements Serializable {
+public class CustomerDto implements Serializable {
 
-    /**
-     * serialVersionUID of type long
-     */
     private static final long serialVersionUID = 1L;
 
-    /**
-     * customerID of type String
-     */
-    private String customerID;
+    private String id;
 
-    /**
-     * name of type String
-     */
     private String name;
 
-    /**
-     * password of type String
-     */
     private String password;
 
     /**
-     * 
+     * No-arg constructor for JavaBean tools
      */
     public CustomerDto() {
-        super();
+
     }
 
     /**
@@ -40,59 +24,58 @@ class CustomerDto implements Serializable {
      * @param password
      */
     public CustomerDto(final String name, final String password) {
-        super();
         this.name = name;
         this.password = password;
     }
 
     /**
-     * @param customerID
+     * @param id
      * @param name
      * @param password
      */
-    public CustomerDto(final String customerID, final String name, final String password) {
-        this.customerID = customerID;
+    public CustomerDto(final String id, final String name, final String password) {
+        this.id = id;
         this.name = name;
         this.password = password;
     }
 
     /**
-     * @return
+     * @return the id
      */
-    public String getCustomerID() {
-        return customerID;
+    public String getId() {
+        return id;
     }
 
     /**
-     * @return
+     * @param id the id to set
+     */
+    public void setId(final String id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the name
      */
     public String getName() {
         return name;
     }
 
     /**
-     * @return
-     */
-    public String getPassword() {
-        return password;
-    }
-
-    /**
-     * @param customerID
-     */
-    public void setCustomerID(final String customerID) {
-        this.customerID = customerID;
-    }
-
-    /**
-     * @param name
+     * @param name the name to set
      */
     public void setName(final String name) {
         this.name = name;
     }
 
     /**
-     * @param password
+     * @return the password
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * @param password the password to set
      */
     public void setPassword(final String password) {
         this.password = password;

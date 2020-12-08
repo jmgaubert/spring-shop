@@ -2,9 +2,9 @@ server:
   port: 8080
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
+    url: jdbc:postgresql://localhost:5433/postgres
     username: postgres
-    password: admin
+    password: Mulotnoir00+
 #Monitoring endpoints   
 management:
    endpoints:
@@ -14,4 +14,4 @@ management:
 logging:
   level:
     org.hibernate.SQL: DEBUG
-    #org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE

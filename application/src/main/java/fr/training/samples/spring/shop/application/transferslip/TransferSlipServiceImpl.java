@@ -9,6 +9,7 @@ import fr.training.samples.spring.shop.domain.holder.HolderRepository;
 import fr.training.samples.spring.shop.domain.transferslip.TransferSlip;
 import fr.training.samples.spring.shop.domain.transferslip.TransferSlipRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 
@@ -27,16 +28,19 @@ public class TransferSlipServiceImpl implements TransferSlipService {
         this.transferSlipRepository = transferSlipRepository;
     }
 
+    @Transactional
     @Override
     public TransferSlip create(TransferSlip transferSlip) {
         return null;
     }
 
+    @Transactional(readOnly = true)
     @Override
     public TransferSlip findOne(String transferSlipId) {
         return null;
     }
 
+    @Transactional
     @Override
     public String runOne(String transferSlipId) {
         TransferSlip transferSlip = transferSlipRepository.findById(transferSlipId);
@@ -74,20 +78,10 @@ public class TransferSlipServiceImpl implements TransferSlipService {
         receiverBalance.setAmount(receiverBalanceBigDecimal.doubleValue());
         balanceRepository.update(receiverBalance);
 
-//        String[] result = new String[4];
-//        String[0] = (issuerBalance.getAccount()+issuerBalance.getAmount()+receiverBalance.getAccount()+receiverBalance.getAmount());
+
           String result = issuerBalance.getAccount().toString()+";"+issuerBalance.getAmount().toString()+":"+receiverBalance.getAccount().toString()+";"+receiverBalance.getAmount().toString();
         return result;
-//        return issuerBalance.getAccount()+issuerBalance.getAmount()+receiverBalance.getAccount()+receiverBalance.getAmount();
     }
 
-//    @Override
-//    public String toString() {
-//        return "TransferSlipServiceImpl{" +
-//                "holderRepository=" + holderRepository +
-//                ", balanceRepository=" + balanceRepository +
-//                ", accountingMovementRepository=" + accountingMovementRepository +
-//                ", transferSlipRepository=" + transferSlipRepository +
-//                '}';
-//    }
+
 }

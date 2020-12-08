@@ -72,6 +72,9 @@ public class TransferSlip extends AbstractBaseEntity {
         this.beneficiaryInformation = beneficiaryInformation;
     }
 
+    /**
+     * @return the id
+     */
     @Override
     public String getId() {
         return super.getId();

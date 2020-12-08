@@ -27,7 +27,7 @@ import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { TransferSlipServiceImpl.class })
-public class TranferSlipImplTest {
+public class TranferSlipServiceImplTest {
 
     @Autowired
     private TransferSlipService transferSlipService;
