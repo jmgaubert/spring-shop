@@ -37,7 +37,7 @@ public class BalanceServiceImplTest {
         final String balanceId = "123e4567-e89b-42d3-a457-556642440000";
         when(balanceRepositoryMock.findById(balanceId)).thenReturn(getBalance());
         // When
-        final Balance result = balanceService.findOneById("123e4567-e89b-42d3-a457-556642440000");
+        final Balance result = balanceService.findOneById(balanceId);
         // Then
         assertThat(result.getAmount()).isEqualTo(3790.14);
     }
