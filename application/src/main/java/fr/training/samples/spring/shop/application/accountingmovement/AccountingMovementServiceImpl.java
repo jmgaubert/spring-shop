@@ -2,8 +2,10 @@ package fr.training.samples.spring.shop.application.accountingmovement;
 
 import fr.training.samples.spring.shop.domain.accountingmovement.AccountingMovement;
 import fr.training.samples.spring.shop.domain.accountingmovement.AccountingMovementRepository;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Service
 public class AccountingMovementServiceImpl implements AccountingMovementService {
 
     private final AccountingMovementRepository accountingMovementRepository;

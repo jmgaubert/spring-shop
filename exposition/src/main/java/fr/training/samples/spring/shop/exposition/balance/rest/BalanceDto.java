@@ -60,14 +60,14 @@ public class BalanceDto implements Serializable {
     }
 
     /**
-     * @param account the id to set
+     * @param account the account to set
      */
     public void setAccount(String account) {
         this.account = account;
     }
 
     /**
-     * @param amount the id to set
+     * @param amount the amount to set
      */
     public void setAmount(double amount) {
         this.amount = amount;
