@@ -5,6 +5,12 @@ import fr.training.samples.spring.shop.domain.customer.Customer;
 
 public interface HolderRepository {
     public Holder findById(String id);
+
     public Holder findByHolderAccount(String account);
+
+    public void save(Holder holder);
+
+    public void update(Holder holder);
+
 
 }

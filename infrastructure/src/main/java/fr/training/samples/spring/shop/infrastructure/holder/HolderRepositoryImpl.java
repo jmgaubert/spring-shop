@@ -25,4 +25,14 @@ public class HolderRepositoryImpl implements HolderRepository {
         return holderJpaRepository.findByAccount(account);
     }
 
+    @Override
+    public void save(final Holder holder) {
+        holderJpaRepository.save(holder);
+
+    }
+
+    @Override
+    public void update(Holder holder) {
+
+    }
 }
