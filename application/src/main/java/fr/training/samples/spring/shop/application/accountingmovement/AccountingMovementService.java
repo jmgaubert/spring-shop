@@ -14,7 +14,7 @@ public interface AccountingMovementService {
     public AccountingMovement findOneById(String accountingId);
 
     /**
-     * Retrieve a accountingmovement according to be save.
+     * accountingmovement according to be save.
      *
      * @param accountingMovement the accountingmovement
      * @return the accountingmovement

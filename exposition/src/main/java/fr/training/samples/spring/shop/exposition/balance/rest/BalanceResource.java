@@ -1,11 +1,15 @@
 package fr.training.samples.spring.shop.exposition.balance.rest;
 
 import fr.training.samples.spring.shop.application.balance.BalanceService;
+import fr.training.samples.spring.shop.domain.accountingmovement.AccountingMovement;
 import fr.training.samples.spring.shop.domain.balance.Balance;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import fr.training.samples.spring.shop.exposition.accountingmovement.rest.AccountingMovementLightDto;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import javax.validation.Valid;
+import java.net.URI;
 
 @RestController
 @RequestMapping("/api")
@@ -34,4 +38,23 @@ public class BalanceResource {
         final Balance balance = balanceService.findOneByBalanceAccount(account);
         return balanceEntityMapper.mapToDto(balance);
     }
+
+    @PostMapping(value = "/balancepost", produces = { "application/json" })
+    public ResponseEntity<URI> addBalanceUsingPost(@Valid @RequestBody final BalanceLightDto balanceDto ){
+        final Balance balance = balanceEntityMapper.mapToEntity(balanceDto);
+        balanceService.addBalance(balance);
+        final URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(balance.getId()).toUri();
+        return ResponseEntity.created(location).build();
+
+    }
+
+    @PutMapping(value = "/balanceput", produces = { "application/json" })
+    public ResponseEntity<URI> addBalanceUsingPut(@Valid @RequestBody final BalanceDto balanceDto ){
+        final Balance balance = balanceEntityMapper.mapToEntity(balanceDto);
+        balanceService.updateBalance(balance);
+        final URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(balance.getId()).toUri();
+        return ResponseEntity.created(location).build();
+
+    }
+
 }

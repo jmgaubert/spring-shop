@@ -26,11 +26,12 @@ public class BalanceRepositoryImpl implements BalanceRepository {
 
     @Override
     public void save(Balance balance){
-
+        balanceJpaRepository.save(balance);
     }
 
     @Override
     public void update(Balance balance){
+        balanceJpaRepository.save(balance);
 
     }
 

@@ -20,4 +20,22 @@ public interface BalanceService {
      * @return the retrieved Balance
      */
     public Balance findOneByBalanceAccount(String account);
+
+    /**
+     * balance according to be save.
+     *
+     * @param balance the balance
+     * @return the balance
+     */
+    public Balance updateBalance(Balance balance);
+
+    /**
+     * balance according to be update.
+     *
+     * @param balance the balance
+     * @return the balance
+     */
+    public Balance addBalance(Balance balance);
+
+
 }

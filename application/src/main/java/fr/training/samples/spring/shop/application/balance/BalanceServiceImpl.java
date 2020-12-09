@@ -27,4 +27,17 @@ public class BalanceServiceImpl implements BalanceService {
 
     }
 
+    @Transactional
+    @Override
+    public Balance addBalance(final Balance balance) {
+        balanceRepository.save(balance);
+        return balance;
+    }
+
+    @Transactional
+    @Override
+    public Balance updateBalance(final Balance balance) {
+        balanceRepository.update(balance);
+        return balance;
+    }
 }

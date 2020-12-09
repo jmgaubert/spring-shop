@@ -41,4 +41,17 @@ public class BalanceServiceImplTest {
         // Then
         assertThat(result.getAmount()).isEqualTo(3790.14);
     }
+
+    @Test
+    public void balance_update_is_ok(){
+        // Given
+        final String balanceId = "123e4567-e89b-42d3-a457-556642440000";
+        when(balanceRepositoryMock.findById(balanceId)).thenReturn(getBalance());
+        // When
+        final Balance result = balanceService.findOneById(balanceId);
+        result.setAmount(12345.67);
+        final Balance resultUpdate = balanceService.updateBalance(result);
+        // Then
+        assertThat(resultUpdate.getAmount()).isEqualTo(12345.67);
+    }
 }
