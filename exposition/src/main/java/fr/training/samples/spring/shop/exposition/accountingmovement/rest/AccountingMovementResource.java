@@ -1,6 +1,5 @@
 package fr.training.samples.spring.shop.exposition.accountingmovement.rest;
 
-import com.sun.jndi.toolkit.url.Uri;
 import fr.training.samples.spring.shop.application.accountingmovement.AccountingMovementService;
 import fr.training.samples.spring.shop.domain.accountingmovement.AccountingMovement;
 import org.springframework.http.ResponseEntity;
