@@ -1,11 +1,14 @@
 package fr.training.samples.spring.shop.exposition.accountingmovement.rest;
 
+import com.sun.jndi.toolkit.url.Uri;
 import fr.training.samples.spring.shop.application.accountingmovement.AccountingMovementService;
 import fr.training.samples.spring.shop.domain.accountingmovement.AccountingMovement;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import javax.validation.Valid;
+import java.net.URI;
 
 @RestController
 @RequestMapping("/api")
@@ -27,5 +30,14 @@ public class AccountingMovementResource {
     public AccountingMovementDto getAccountingBalanceById(@PathVariable final String id){
         final AccountingMovement accountingMovement = accountingMovementService.findOneById(id);
         return accountingMovementMapper.mapToDto(accountingMovement);
+    }
+
+    @PostMapping(value = "/accountingmovement", produces = { "application/json" })
+    public ResponseEntity<URI> addAccountingMovementUsingPost(@Valid @RequestBody final AccountingMovementLightDto accountingMovementDto ){
+        final AccountingMovement accountingMovement = accountingMovementMapper.mapToEntity(accountingMovementDto);
+        accountingMovementService.addAccountingMovement(accountingMovement);
+        final URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(accountingMovement.getId()).toUri();
+        return ResponseEntity.created(location).build();
+
     }
 }
