@@ -45,15 +45,26 @@ public class TransferSlipServiceImpl implements TransferSlipService {
 
     @Transactional
     @Override
-    public String runOne(String transferSlipId) {
-        TransferSlip transferSlip = transferSlipRepository.findById(transferSlipId);
+//    public void runOne(String transferSlipId) {
+    public void runOne(TransferSlip transferSlip) {
+//        TransferSlip transferSlip = transferSlipRepository.findById(transferSlipId);
         //implémenter un find par account dans les repository
         //dans Holder il faut impmlémenter comme recherche:
         //une recherche sur la cle fonctionnelle issueraccount/receiveraccount --> il faut récuperer id à creuser pour connexion à base de données
-        Holder issuerHolder = holderRepository.findById(transferSlip.getIssuerAccount());
-        Holder receiverHolder = holderRepository.findById(transferSlip.getReceiverAccount());
-        Balance issuerBalance = balanceRepository.findById(transferSlip.getIssuerAccount());
-        Balance receiverBalance = balanceRepository.findById(transferSlip.getReceiverAccount());
+//        Holder issuerHolder = holderRepository.findByHolderAccount(transferSlip.getIssuerAccount());
+//        Holder issuerHolder = holderRepository.findById(transferSlip.getIssuerAccount());
+        Holder issuerHolder = holderRepository.findById("123e4567-e89b-42d3-a458-556642440000");
+
+//        Holder receiverHolder = holderRepository.findByHolderAccount(transferSlip.getReceiverAccount());
+//        Holder receiverHolder = holderRepository.findById(transferSlip.getReceiverAccount());
+        Holder receiverHolder = holderRepository.findById("223e4567-e89b-42d3-a458-556642440000");
+
+//        Balance issuerBalance = balanceRepository.findByBalanceAccount(transferSlip.getIssuerAccount());
+//        Balance issuerBalance = balanceRepository.findById(transferSlip.getIssuerAccount());
+        Balance issuerBalance = balanceRepository.findById("123e4567-e89b-42d3-a457-556642440000");
+//        Balance receiverBalance = balanceRepository.findByBalanceAccount(transferSlip.getReceiverAccount());
+//        Balance receiverBalance = balanceRepository.findById(transferSlip.getReceiverAccount());
+        Balance receiverBalance = balanceRepository.findById("223e4567-e89b-42d3-a457-556642440000");
 
         AccountingMovement issuerAccountingMovement = new AccountingMovement();
         issuerAccountingMovement.setAccount(transferSlip.getIssuerAccount());
@@ -66,7 +77,7 @@ public class TransferSlipServiceImpl implements TransferSlipService {
 
         AccountingMovement receiverAccountingMovement = new AccountingMovement();
         receiverAccountingMovement.setAccount(transferSlip.getReceiverAccount());
-        receiverAccountingMovement.setReference("reference mvt debit a définir");
+        receiverAccountingMovement.setReference("reference mvt credit a définir");
         receiverAccountingMovement.setAmount(transferSlip.getAmount());
         receiverAccountingMovement.setOperationDate(transferSlip.getExecutionDate());
         receiverAccountingMovement.setValueDate(transferSlip.getExecutionDate().plusDays(1));
@@ -82,8 +93,8 @@ public class TransferSlipServiceImpl implements TransferSlipService {
         balanceRepository.update(receiverBalance);
 
 
-          String result = issuerBalance.getAccount().toString()+";"+issuerBalance.getAmount().toString()+":"+receiverBalance.getAccount().toString()+";"+receiverBalance.getAmount().toString();
-        return result;
+//          String result = issuerBalance.getAccount().toString()+";"+issuerBalance.getAmount().toString()+":"+receiverBalance.getAccount().toString()+";"+receiverBalance.getAmount().toString();
+//        return result;
     }
 
 

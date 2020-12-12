@@ -21,12 +21,20 @@ public interface TransferSlipService {
      */
     public TransferSlip findOne(String transferSlipId);
 
+//    /**
+//     * Run a transferSlip according to the given identifier.
+//     *
+//     * @param transferSlipId the transferSlip identifier
+//     * @return the result of the run
+//     */
+//    public void runOne(String transferSlipId);
+
     /**
      * Run a transferSlip according to the given identifier.
      *
-     * @param transferSlipId the transferSlip identifier
+     * @param transferSlip the transferSlip identifier
      * @return the result of the run
      */
-    public String runOne(String transferSlipId);
+    public void runOne(TransferSlip transferSlip);
 
 }

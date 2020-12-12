@@ -20,8 +20,9 @@ public class HolderRepositoryImpl implements HolderRepository {
         return holderJpaRepository.findById(id).orElseThrow(() -> new NotFoundException());
     }
 
-    @Override
+//    @Override
     public Holder findByHolderAccount(final String account){
+
         return holderJpaRepository.findByAccount(account);
     }
 

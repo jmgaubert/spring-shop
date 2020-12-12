@@ -36,6 +36,21 @@ public class TransferSlipResource {
         return transferSlipMapper.mapToDto(transferSlip);
     }
 
+    @GetMapping(value = "/transfersliprunbyid/{id}", produces = { "application/json"})
+    public void runTransferSlipById(@PathVariable final String id){
+        final TransferSlip transferSlip = transferSlipService.findOne(id);
+        transferSlipService.runOne(transferSlip);
+    }
+
+//    @PostMapping(value = "/transferslippostrun", produces = { "application/json" })
+//    public ResponseEntity<URI> runTransferSlipUsingPost(@Valid @RequestBody final TransferSlipDto transferSlipDto ){
+//        final TransferSlip transferSlip = transferSlipMapper.mapToEntity(transferSlipDto);
+//        transferSlipService.create(transferSlip);
+//        final URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(transferSlip.getId()).toUri();
+//        return ResponseEntity.created(location).build();
+//
+//    }
+
     @PostMapping(value = "/transferslippost", produces = { "application/json" })
     public ResponseEntity<URI> addTransferSlipUsingPost(@Valid @RequestBody final TransferSlipDto transferSlipDto ){
         final TransferSlip transferSlip = transferSlipMapper.mapToEntity(transferSlipDto);
