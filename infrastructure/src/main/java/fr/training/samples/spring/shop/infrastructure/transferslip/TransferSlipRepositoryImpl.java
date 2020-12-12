@@ -1,5 +1,6 @@
 package fr.training.samples.spring.shop.infrastructure.transferslip;
 
+import fr.training.samples.spring.shop.domain.common.exception.NotFoundException;
 import fr.training.samples.spring.shop.domain.transferslip.TransferSlip;
 import fr.training.samples.spring.shop.domain.transferslip.TransferSlipRepository;
 import org.springframework.stereotype.Repository;
@@ -15,11 +16,11 @@ public class TransferSlipRepositoryImpl implements TransferSlipRepository {
 
     @Override
     public TransferSlip findById(String id) {
-        return null;
+         return transferSlipJpaRepository.findById(id).orElseThrow(() -> new NotFoundException());
     }
 
     @Override
     public void save(TransferSlip transferSlip) {
-
+         transferSlipJpaRepository.save(transferSlip);
     }
 }
