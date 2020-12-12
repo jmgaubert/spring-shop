@@ -19,7 +19,6 @@ public class AccountingMovementResource {
     /**
      * Constructor for Bean injection
      */
-
     public AccountingMovementResource(AccountingMovementService accountingMovementService, AccountingMovementMapper accountingMovementMapper) {
         this.accountingMovementService = accountingMovementService;
         this.accountingMovementMapper = accountingMovementMapper;

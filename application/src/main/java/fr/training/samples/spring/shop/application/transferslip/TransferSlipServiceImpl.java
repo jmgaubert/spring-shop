@@ -31,13 +31,16 @@ public class TransferSlipServiceImpl implements TransferSlipService {
     @Transactional
     @Override
     public TransferSlip create(TransferSlip transferSlip) {
-        return null;
+        //a voir car pas de cohérence car save ne retourne rien --> faire une passe sur tout les services / repository
+        transferSlipRepository.save(transferSlip);
+        return transferSlip;
     }
 
     @Transactional(readOnly = true)
     @Override
     public TransferSlip findOne(String transferSlipId) {
-        return null;
+
+        return transferSlipRepository.findById(transferSlipId);
     }
 
     @Transactional

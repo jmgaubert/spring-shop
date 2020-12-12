@@ -32,7 +32,7 @@ public class TransferSlipRepositoryTest {
         assertThat(transferSlip.getExecutionDate()).isEqualTo("2020-12-11");
         assertThat(transferSlip.getAmount()).isEqualTo(2354.42);
         assertThat(transferSlip.getLabel()).isEqualTo("virement pour anniversaire");
-        assertThat(transferSlip.isBeneficiaryInformation()).isEqualTo(true);
+        assertThat(transferSlip.getBeneficiaryInformation()).isEqualTo(true);
 
     }
 

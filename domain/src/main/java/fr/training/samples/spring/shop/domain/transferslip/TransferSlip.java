@@ -64,7 +64,7 @@ public class TransferSlip extends AbstractBaseEntity {
         this.label = label;
     }
 
-    public boolean isBeneficiaryInformation() {
+    public boolean getBeneficiaryInformation() {
         return beneficiaryInformation;
     }
 
